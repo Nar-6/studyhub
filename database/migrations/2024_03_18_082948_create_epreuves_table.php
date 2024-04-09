@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('epreuves', function (Blueprint $table) {
             $table->id('numEp');
+            $table->string('nomEp');
             $table->date('dateEp');
             $table->time('heurDeb');
             $table->time('heurFin');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->foreign('codFil')->references('codFil')->on('filieres')->onDelete('cascade');
             $table->unsignedBigInteger('codMat');
             $table->foreign('codMat')->references('codMat')->on('matieres')->onDelete('cascade');
-            $table->integer('annee');
+            // $table->integer('annee');
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,18 +17,19 @@ class Epreuve extends Model
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
 
     protected $fillable = [
+        'nomEp',
         'dateEp',
         'heurDeb',
         'heurFin',
         'numProf',
         'codFil',
         'codMat',
-        'annee'
+        // 'annee'
     ]; // Colonnes autorisées à être affectées en masse
 
     public function professeur()
     {
-        return $this->belongsTo(Professeur::class, 'numProf', 'numProf');
+        return $this->belongsTo(Professeur::class, 'numProf', 'nomProf');
     }
 
     public function filiere()
@@ -39,4 +41,22 @@ class Epreuve extends Model
     {
         return $this->belongsTo(Matiere::class, 'codMat', 'codMat');
     }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class,'epreuve_numEp');
+    }
+
+
+    public function results()
+    {
+        return $this->hasMany(Result::class, 'numEp');
+    }
+
+     // Mutateur pour convertir la colonne dateEp en objet date
+     public function setDateEpAttribute($value)
+     {
+         $this->attributes['dateEp'] = Carbon::parse($value);
+     }
+
 }
