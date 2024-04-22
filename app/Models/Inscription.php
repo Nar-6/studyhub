@@ -14,6 +14,7 @@ class Inscription extends Model
     protected $primaryKey = 'numIns'; // Clé primaire de la table
 
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
+    public $timestamps = true;
 
     protected $fillable = ['dateIns','annee','codFil','matricule', 'user_id']; // Colonnes autorisées à être affectées en masse
 

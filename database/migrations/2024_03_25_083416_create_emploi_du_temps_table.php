@@ -36,7 +36,7 @@ return new class extends Migration
 
             $table->string('samedi_matin')->nullable();
 
-            $table->unsignedBigInteger('codFil');
+            $table->string('codFil');
 
             $table->foreign('codFil')
             ->references('codFil')

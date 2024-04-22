@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmploiDuTemps extends Model
+class Emploi_du_temps extends Model
 {
     /**
      * The table associated with the model.
@@ -19,6 +19,8 @@ class EmploiDuTemps extends Model
      * @var string
      */
     protected $primaryKey = 'numEmploi';
+    public $timestamps = true;
+    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.
@@ -32,7 +34,8 @@ class EmploiDuTemps extends Model
         'mercredi_matin', 'mercredi_aprem', 'mercredi_soir',
         'jeudi_matin', 'jeudi_aprem', 'jeudi_soir',
         'vendredi_matin', 'vendredi_aprem', 'vendredi_soir',
-        'samedi_matin', 'codFil'
+        'samedi_matin',
+        'codFil'
     ];
 
     /**

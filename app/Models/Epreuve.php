@@ -14,6 +14,7 @@ class Epreuve extends Model
     protected $primaryKey = 'numEp'; // Clé primaire de la table
 
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
+    public $timestamps = true;
 
     protected $fillable = [
         'dateEp',

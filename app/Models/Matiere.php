@@ -14,6 +14,7 @@ class Matiere extends Model
     protected $primaryKey = 'codMat'; // Clé primaire de la table
 
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
+    public $timestamps = true;
 
     protected $fillable = [ 'libMat']; // Colonnes autorisées à être affectées en masse
 
