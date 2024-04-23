@@ -14,16 +14,14 @@ return new class extends Migration
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id('numIns');
             $table->date('dateIns');
-            $table->integer('annee');
+            $table->year('annee');
             $table->string('codFil');
-            $table->unsignedBigInteger('matricule');
+            $table->string('matricule');
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('codFil')->references('codFil')->on('filieres');
-            $table->foreign('matricule')->references('matricule')->on('etudiants');
-       
+            $table->foreign('codFil')->references('codFil')->on('filieres')->onDelete('cascade');
+            $table->foreign('matricule')->references('matricule')->on('etudiants')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

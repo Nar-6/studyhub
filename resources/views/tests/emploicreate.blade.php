@@ -9,7 +9,8 @@
     <title>Creer Emplois</title>
 </head>
 <body>
-    <form method="POST" action="{{ route('emplois.store' , $filiere->id) }}">
+    @include('layouts.navbar')
+    <form method="POST" action="{{ route('emplois.store' , $filiere->codFil) }}" class="mt-3">
         @csrf
         <table class="table table-bordered">
             <thead>
@@ -56,7 +57,7 @@
         <input type="hidden" name="codFil" value="{{$filiere->codFil}}">
         <button type="submit">Enregistrer</button>
     </form>
-    
+
 </body>
 <style>
     .samedi-soir {

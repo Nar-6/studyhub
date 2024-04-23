@@ -9,7 +9,8 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    @include('layouts.navbar')
+    <div class="container mt-4" >
         <h1>Liste des filières</h1>
         <table class="table table-bordered">
             <thead>
@@ -24,7 +25,7 @@
                 <tr>
                     <td>{{ $filiere->codFil }}</td>
                     <td>{{ $filiere->libFil }}</td>
-                    <td><a href="{{ route('emplois.show', $filiere->id) }}">Emplois du temps</a></td>
+                    <td><a href="{{ route('emplois.show', $filiere->codFil) }}">Emplois du temps</a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -36,6 +37,6 @@
         </div>
     </div>
 
-    
+
 </body>
 </html>

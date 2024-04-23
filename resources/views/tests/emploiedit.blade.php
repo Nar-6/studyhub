@@ -9,7 +9,8 @@
     <title>Emploie modifier</title>
 </head>
 <body>
-    <form method="POST" action="{{ route('emplois.update', $emploiDuTemps->numEmploi) }}">
+    @include('layouts.navbar')
+    <form method="POST" action="{{ route('emplois.update', $emploiDuTemps->numEmploi) }}"class="mt-3">
         @csrf
         <table class="table table-bordered">
             <thead>
@@ -55,7 +56,7 @@
         </table>
         <button type="submit">Enregistrer</button>
     </form>
-    
+
 </body>
 <style>
     .samedi-soir {

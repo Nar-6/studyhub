@@ -17,15 +17,13 @@ return new class extends Migration
             $table->time('heurDeb');
             $table->time('heurFin');
             $table->unsignedBigInteger('numProf');
+            $table->foreign('numProf')->references('numProf')->on('professeurs')->onDelete('cascade');
             $table->string('codFil');
+            $table->foreign('codFil')->references('codFil')->on('filieres')->onDelete('cascade');
             $table->unsignedBigInteger('codMat');
+            $table->foreign('codMat')->references('codMat')->on('matieres')->onDelete('cascade');
             $table->integer('annee');
             $table->timestamps();
-
-            $table->foreign('numProf')->references('numProf')->on('professeurs')->onDelete('cascade');
-            $table->foreign('codFil')->references('codFil')->on('filieres')->onDelete('cascade');
-            $table->foreign('codMat')->references('codMat')->on('matieres')->onDelete('cascade');
-
         });
     }
 

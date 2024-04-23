@@ -9,6 +9,7 @@
     <title>Creer Emplois</title>
 </head>
 <body>
+    @include('layouts.navbar')
     @if(session('info'))
         <div class="alert alert-info">
             {{ session('info') }}
@@ -19,7 +20,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="content">
+    <div class="content" class="mt-3">
         <form action="{{route("filiere.store")}}" method="POST">
             @csrf
             <div class="form-group">
@@ -31,7 +32,7 @@
                 <input type="text" class="form-control" id="libFil" name="libFil" placeholder="Entrez le libellé de la filière" required>
             </div>
             <button type="submit" class="btn btn-primary">Ajouter Filière</button>
-        </form>    
+        </form>
     </div>
 </body>
 </html>

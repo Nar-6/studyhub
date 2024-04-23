@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Emploi_du_temps;
+use App\Models\EmploiDuTemps;
 use App\Models\Filiere;
 
 class EmploiDuTempsController extends Controller
@@ -10,7 +11,7 @@ class EmploiDuTempsController extends Controller
     // Afficher tous les emplois du temps
     public function index()
     {
-        $emploisDuTemps = Emploi_du_temps::all();
+        $emploisDuTemps = EmploiDuTemps::all();
         return view('emplois.index', compact('emploisDuTemps'));
     }
 
@@ -51,22 +52,22 @@ class EmploiDuTempsController extends Controller
             'vendredi_aprem' => 'nullable|string|max:255',
             'vendredi_soir' => 'nullable|string|max:255',
             'samedi_matin' => 'nullable|string|max:255',
-            'codFil'=> 'required|string',
+            'codFil' => 'required|string',
             // Ajoutez d'autres règles de validation au besoin
         ]);
-    
+
         // Créer un nouvel emploi du temps
-        Emploi_du_temps::create($request->all());
-    
+        EmploiDuTemps::create($request->all());
+
         // Rediriger vers la page d'index des emplois du temps avec un message de succès
-        return redirect()->route('emplois.show',['filiereId' => $filiereId])->with('success', 'Emploi du temps créé avec succès.');
+        return redirect()->route('emplois.show', ['filiereId' => $filiereId])->with('success', 'Emploi du temps créé avec succès.');
     }
-    
+
 
     // Afficher le formulaire d'édition d'un emploi du temps
     public function edit($emploiId)
     {
-        $emploiDuTemps = Emploi_du_temps::findOrFail($emploiId);
+        $emploiDuTemps = EmploiDuTemps::findOrFail($emploiId);
         return view('tests/emploiedit', compact('emploiDuTemps',));
     }
 
@@ -95,21 +96,20 @@ class EmploiDuTempsController extends Controller
         ]);
 
         // Trouver l'emploi du temps à mettre à jour
-        $emploiDuTemps = Emploi_du_temps::findOrFail($emploiId);
-        $filiere = $emploiDuTemps->filiere();
+        $emploiDuTemps = EmploiDuTemps::findOrFail($emploiId);
 
         // Mettre à jour les données de l'emploi du temps
         $emploiDuTemps->update($request->all());
 
         // Rediriger vers la page d'index des emplois du temps avec un message de succès
-        return redirect()->route('emplois.show',['filiereId' => $filiere->id])->with('success', 'Emploi du temps mis à jour avec succès.');
+        return redirect()->route('emplois.show',  ['filiereId' => $emploiDuTemps->codFil])->with('success', 'Emploi du temps mis à jour avec succès.');
     }
 
     // Supprimer un emploi du temps
     public function destroy($id)
     {
         // Trouver l'emploi du temps à supprimer
-        $emploiDuTemps = Emploi_du_temps::findOrFail($id);
+        $emploiDuTemps = EmploiDuTemps::findOrFail($id);
 
         // Supprimer l'emploi du temps
         $emploiDuTemps->delete();

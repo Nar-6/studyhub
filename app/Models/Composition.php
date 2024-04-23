@@ -43,7 +43,7 @@ class Composition extends Model
         return $this->belongsTo(Inscription::class, 'numIns', 'numIns');
     }
 
-    public function epreuves()
+    public function epreuve()
     {
         return $this->belongsTo(Epreuve::class, 'numEp', 'numEp');
     }

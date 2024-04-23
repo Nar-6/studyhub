@@ -1,15 +1,31 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmploiDuTempsController;
+use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\FiliereController;
+use App\Http\Controllers\InscriptionController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Filiere;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('base');
-})->name('home');
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('etudiants', EtudiantController::class);
+    Route::get('inscriptions', [InscriptionController::class, 'create'])->name('inscriptions.create');
+    Route::post('inscriptions', [InscriptionController::class, 'store'])->name('inscriptions.store');
+    Route::get('/etudiants/{matricule}/details', [EtudiantController::class, 'showDetails'])->name('etudiants.details');
+});
 
 
 ////////////////////
@@ -49,3 +65,5 @@ Route::post('/identification', [AdminController::class, 'identifier'])->name('ro
 
 Route::get('/administration', [AdminController::class, 'connection'])->name('admin.connection');
 Route::post('/users/store', [FiliereController::class, 'store'])->name('filiere.store');
+
+require __DIR__ . '/auth.php';

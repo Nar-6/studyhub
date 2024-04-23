@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 define('LARAVEL_START', microtime(true));
 

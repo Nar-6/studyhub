@@ -39,9 +39,9 @@ return new class extends Migration
             $table->string('codFil');
 
             $table->foreign('codFil')
-            ->references('codFil')
-            ->on('filieres')
-            ->onDelete('cascade');       
+                ->references('codFil')
+                ->on('filieres')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

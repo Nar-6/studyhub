@@ -17,20 +17,20 @@ return new class extends Migration
             $table->unsignedBigInteger('numEp');
             $table->float('note');
             $table->timestamps();
-        
+
             // Définition de la clé primaire composée
             $table->primary(['numIns', 'numEp']);
-        
+
             // Déclaration des clés étrangères
             $table->foreign('numIns')
-                  ->references('numIns')
-                  ->on('inscriptions')
-                  ->onDelete('cascade');
-        
+                ->references('numIns')
+                ->on('inscriptions')
+                ->onDelete('cascade');
+
             $table->foreign('numEp')
-                  ->references('numEp')
-                  ->on('epreuves')
-                  ->onDelete('cascade');
+                ->references('numEp')
+                ->on('epreuves')
+                ->onDelete('cascade');
         });
     }
 
