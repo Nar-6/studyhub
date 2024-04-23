@@ -19,7 +19,7 @@ class FiliereController extends Controller
         $filiere = Filiere::find($filiereId);
         $emploiDuTemps = $filiere->emploieDuTemps();
         $emploisActif = $emploiDuTemps->latest()->first();
-        return view('tests/emploidutemps', compact('emploisActif','filiere'));
+        return view('tests/emploidutemps', compact('emploisActif', 'filiere'));
     }
 
     // Afficher le formulaire de création d'un nouvel emploi du temps
@@ -31,26 +31,28 @@ class FiliereController extends Controller
     // Enregistrer un nouvel emploi du temps
     public function store(Request $request)
     {
+
         // Valider les données du formulaire
-        $request->validate([
+        $validated =  $request->validate([
             'codFil' => 'string|required',
             'libFil' => 'string|required'
             // Ajoutez d'autres règles de validation au besoin
         ]);
+
         $filieres = Filiere::all();
         foreach ($filieres as $filiere) {
-            if ($filiere->codFil == $request->all()['codFil']) {
+            if ($filiere->codFil == $validated['codFil']) {
                 return redirect()->route('filiere.create')->with('info', 'Ce code est deja applique a une filiere.');
             }
         }
 
         // Créer un nouvel emploi du temps
-        Filiere::create($request->all());
-    
+        Filiere::create($validated);
+
         // Rediriger vers la page d'index des emplois du temps avec un message de succès
         return redirect()->route('filiere')->with('success', 'Filiere créé avec succès.');
     }
-    
+
 
     // Afficher le formulaire d'édition d'un emploi du temps
     public function edit($emploiId)
@@ -90,7 +92,7 @@ class FiliereController extends Controller
         $emploiDuTemps->update($request->all());
 
         // Rediriger vers la page d'index des emplois du temps avec un message de succès
-        return redirect()->route('emplois.show',['filiereId' => $emploiDuTemps->codFil])->with('success', 'Emploi du temps mis à jour avec succès.');
+        return redirect()->route('emplois.show', ['filiereId' => $emploiDuTemps->codFil])->with('success', 'Emploi du temps mis à jour avec succès.');
     }
 
     // Supprimer un emploi du temps
@@ -104,4 +106,5 @@ class FiliereController extends Controller
 
         // Rediriger vers la page d'index des emplois du temps avec un message de succès
         return redirect()->route('home')->with('success', 'Emploi du temps supprimé avec succès.');
-    }}
+    }
+}

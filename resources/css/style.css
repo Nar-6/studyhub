@@ -1,0 +1,91 @@
+/* Css pour la page du formulaire --Realisation */
+body {
+	margin: auto;
+	padding: 6%;
+	font-family: system-ui, Roboto, sans-serif;
+	max-width: 1024px;
+	min-width: 420px;
+	background-size: cover;
+	background-position: center;
+	background-image: url("../images/2.png");
+	background-repeat: no-repeat;
+	color: whitesmoke;
+}
+.navbar {
+    background-color: rgb(232, 127, 79); /* Couleur de fond personnalisée */
+}
+main {
+	padding: 2%;
+	background: linear-gradient(rgba(232, 104, 6, 0.1), rgba(232, 104, 6, 0.7));
+	border-radius: 15px;
+	display: flex;
+	justify-content: space-between;
+	height: 60vh;
+	min-height: 425px;
+}
+.icone_img {
+	width: 150px;
+	min-height: 150px;
+	border-radius: 3%;
+	padding-left: 10%;
+}
+.left_speach {
+	margin-bottom: 120px;
+}
+
+.input_line {
+	width: 450px;
+	background: none;
+	border: none;
+	border-bottom: 2px solid white;
+	color: whitesmoke;
+	font-size: 16px;
+}
+
+.input_line:focus {
+	outline: none; /* Supprimer le contour lorsque le champ est actif */
+	background: none;
+	color: white;
+}
+
+.input_line:-webkit-autofill,
+.input_line:-webkit-autofill:hover,
+.input_line:-webkit-autofill:focus {
+	-webkit-text-fill-color: white; /* Couleur du texte */
+	-webkit-box-shadow: 0 0 0px 1000px transparent inset; /* Arrière-plan transparent */
+	transition: background-color 5000s ease-in-out 0s; /* Délai de transition pour garder la couleur d'arrière-plan */
+}
+
+.left_txt,
+.left_speach {
+	font-size: large;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 850px) {
+	main {
+		display: inline;
+		height: 100vh;
+		width: 100%;
+	}
+	.left {
+		margin-bottom: 2rem;
+	}
+	.icone {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.left_speach {
+		margin-bottom: 10px;
+	}
+
+	.right {
+		align-items: center;
+		text-align: center;
+	}
+
+	.input_line {
+		width: 380px;
+		font-size: 14px;
+	}
+}

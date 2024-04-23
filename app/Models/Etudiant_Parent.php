@@ -11,12 +11,11 @@ class Etudiant_Parent extends Model
 
     protected $table = 'etudiant_parents'; // Nom de la table dans la base de données
 
-    protected $primaryKey = 'parentId'; // Clé primaire de la table
+    protected $primaryKey = 'parent_id'; // Clé primaire de la table
 
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
-    public $timestamps = true;
 
-    protected $fillable = [ 'nom', 'user_id']; // Colonnes autorisées à être affectées en masse
+    protected $fillable = ['nom', 'user_id']; // Colonnes autorisées à être affectées en masse
 
     public function __construct(array $attributes = [])
     {
@@ -25,12 +24,6 @@ class Etudiant_Parent extends Model
 
     public function enfants()
     {
-        return $this->hasMany(Etudiant::class, 'parentId', 'parentId');
+        return $this->hasMany(Etudiant::class, 'parent_id', 'parent_id');
     }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
 }

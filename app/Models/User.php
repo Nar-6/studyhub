@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
     public $timestamps = true;
 
@@ -54,7 +55,7 @@ class User extends Authenticatable
     // Relation avec les parents
     public function parent()
     {
-        return $this->hasOne(Parent::class);
+        return $this->hasOne(Etudiant_Parent::class);
     }
 
     // Relation avec les professeurs

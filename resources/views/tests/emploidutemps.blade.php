@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initisAl-scale=1.0">
@@ -8,9 +9,11 @@
 
     <title>Emplois du temps</title>
 </head>
+
 <body>
+    @include('layouts.navbar')
     @if ($emploisActif)
-    <table class="table table-bordered">
+    <table class="table table-bordered mt-4 py-3 table striped">
         <thead>
             <tr>
                 <th scope="col">Jour</th>
@@ -54,23 +57,27 @@
     </table>
     <div class="container">
         <div class="boutons">
-            <a href="{{ route('emplois.create', $filiere->id) }}"><button type="button" class="btn btn-primary">Créer un nouvel emploi</button></a>
-            <a href="{{ route('emplois.destroy', $emploisActif->numEmploi) }}"><button type="button" class="btn btn-danger">Supprimer</button></a>
-            <a href="{{ route('emplois.edit', $emploisActif->numEmploi) }}"><button type="button" class="btn btn-warning">Modifier</button></a>
+            <a href="{{ route('emplois.create', $filiere->codFil) }}"><button type="button"
+                    class="btn btn-primary">Créer un nouvel emploi</button></a>
+            <a href="{{ route('emplois.destroy', $emploisActif->numEmploi) }}"><button type="button"
+                    class="btn btn-danger">Supprimer</button></a>
+            <a href="{{ route('emplois.edit', $emploisActif->numEmploi) }}"><button type="button"
+                    class="btn btn-warning">Modifier</button></a>
         </div>
     </div>
-    
+
     @else
-        <div class="container">
-            <h1><a href="{{ route('emplois.create', $filiere->id) }}">Creer un emplois du temps</a></h1>
-        </div>
+    {{-- <div class="container">
+        <h1><a href="{{ route('emplois.create',$filiere->codFil) }}">Creer un emplois du temps</a></h1>
+    </div> --}}
     @endif
-   
-   <style>
-    .boutons{
-        display: flex;
-        justify-content: space-around;
-    }
-   </style>
+
+    <style>
+        .boutons {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
 </body>
+
 </html>
