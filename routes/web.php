@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompositionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EpreuveController;
 use App\Http\Controllers\Etudiant\TestController as EtudiantTestController;
@@ -58,3 +59,5 @@ Route::post('/reset-password', [userController::class, 'resetPwdForm'])->name('p
   Route::get('results/etudiant',[EtudiantResultController::class, ' showResult'])->name('etudiant_results');
   Route::get('examenResult',[EtudiantResultController::class, 'showResult_prof'])->name('professeur_results');
 
+ //composition
+ Route::get('composition',[CompositionController::class,'fillComposition'])->name('composition');
