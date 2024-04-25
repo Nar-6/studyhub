@@ -10,6 +10,9 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -55,6 +58,3 @@ Route::post('/reset-password', [userController::class, 'resetPwdForm'])->name('p
   Route::get('results/etudiant',[EtudiantResultController::class, ' showResult'])->name('etudiant_results');
   Route::get('examenResult',[EtudiantResultController::class, 'showResult_prof'])->name('professeur_results');
 
-//   Route::get('/', function () {
-//     return view('welcome');
-// });

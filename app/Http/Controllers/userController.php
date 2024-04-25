@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
+//j'ai juste créer cela pour faire mes tests
 class userController extends Controller
 {
     public function register()
@@ -40,25 +41,6 @@ class userController extends Controller
                return redirect()->back()->withInput()->with('error', 'Une erreur est survenue lors de la création de votre compte. Veuillez réessayer.');
             }
         }
-
-
-
-
-    //         $user = new User();
-    //         $user->name = $request->nom;
-    //         $user->email = $request->email;
-    //         $user->password = Hash::make($request->password);
-    //         $user->role = $request->role;
-    //         $user->save();
-
-    //         // Rediriger l'utilisateur vers le tableau de bord approprié après l'inscription réussie
-    //         return redirect()->route($this->getDashboardRoute($user->role))->with('success', 'Votre compte a été créé avec succès !');
-    //     } catch (\Exception $e) {
-    //         // En cas d'erreur, afficher un message d'erreur et rediriger l'utilisateur vers le formulaire d'inscription avec les données précédemment soumises
-    //         return redirect()->back()->withInput()->with('error', 'Une erreur est survenue lors de la création de votre compte. Veuillez réessayer.');
-    //     }
-    // }
-
 
     public function login()
     {

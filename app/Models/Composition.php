@@ -38,12 +38,12 @@ class Composition extends Model
 
 
     // Relations
-    public function etudiantsAyantComposer()
+    public function inscription()
     {
         return $this->belongsTo(Inscription::class, 'numIns', 'numIns');
     }
 
-    public function epreuves()
+    public function epreuve()
     {
         return $this->belongsTo(Epreuve::class, 'numEp', 'numEp');
     }

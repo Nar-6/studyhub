@@ -12,14 +12,16 @@ class result extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // protected $fillable = ['numEp', 'total_points', 'user_id'];
 
     public function epreuve()
     {
-        return $this->belongsTo(Epreuve::class,'numEp');
+        return $this->belongsTo(Epreuve::class, 'numEp', 'numEp');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 }

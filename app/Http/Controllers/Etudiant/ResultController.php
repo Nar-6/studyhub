@@ -16,23 +16,9 @@ class ResultController extends Controller
             $query->whereId(Auth::id());
         })->findOrFail($result_id);
 
-        $epreuve=$result->epreuve;
-        // Calculer la note sur le total des points normaux
-        if($epreuve){
-            $questions=$epreuve->questions()->get();
-            $totalPoints=0;
-            foreach($questions as $question){
-                $totalPoints += $question->points;
-            }
-
-            $score = ($result->total_points / $totalPoints) * 20; // Calculer le score sur 20
+        $score= $result->total_points ; // Calculer le score sur 20
 
             return view('etudiant.results', compact('result', 'score'));
-
-        }else{
-            return redirect()->back()->with('error',"Vous n'aviez pas composé,pas de note");
-        }
-
     }
 
     public function showResult()
@@ -49,6 +35,8 @@ class ResultController extends Controller
 
         return view('professeur.results', compact('epreuves'));
     }
+
+    
 }
 
 
