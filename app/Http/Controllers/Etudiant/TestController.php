@@ -11,6 +11,7 @@ use App\Models\Result;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+
 class TestController extends Controller
 {
     public function index()
@@ -27,6 +28,7 @@ class TestController extends Controller
 
         return view('etudiant.test', compact('epreuves'));
     }
+
 
     public function store(StoreTestRequest $request)
 {
@@ -50,6 +52,7 @@ class TestController extends Controller
             $totalPoints += $question->points;
         }
     }
+
 
     // Récupérer le total des points normaux de l'épreuve
     $epreuve = Epreuve::findOrFail($numEp);

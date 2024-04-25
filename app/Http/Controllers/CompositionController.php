@@ -11,7 +11,7 @@ class CompositionController extends Controller
 {
     public function fillComposition()
     {
-        
+
         // Récupérer tous les résultats
         $results = result::all();
 
