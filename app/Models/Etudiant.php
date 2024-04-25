@@ -12,6 +12,7 @@ class Etudiant extends Model
     protected $table = 'etudiants'; // Nom de la table dans la base de données
 
     protected $primaryKey = 'matricule'; // Clé primaire de la table
+    public $timestamps = true;
 
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
 

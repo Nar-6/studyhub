@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id('numIns');
-            $table->string('dateIns');
-            $table->string('annee');
-            $table->unsignedBigInteger('codFil');
+            $table->date('dateIns');
+            $table->integer('annee');
+            $table->string('codFil');
             $table->unsignedBigInteger('matricule');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

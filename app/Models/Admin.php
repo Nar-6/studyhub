@@ -5,32 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Etudiant_Parent extends Model
+class Admin extends Model
 {
     use HasFactory;
-
-    protected $table = 'etudiant_parents'; // Nom de la table dans la base de données
-
-    protected $primaryKey = 'parentId'; // Clé primaire de la table
+    protected $table = 'admins'; // Nom de la table dans la base de données
 
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
     public $timestamps = true;
 
-    protected $fillable = [ 'nom', 'user_id']; // Colonnes autorisées à être affectées en masse
+    protected $fillable = [ 'nom','prenom', 'user_id']; // Colonnes autorisées à être affectées en masse
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
     }
 
-    public function enfants()
-    {
-        return $this->hasMany(Etudiant::class, 'parentId', 'parentId');
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
 }
