@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\EtudiantFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,4 +33,10 @@ class Etudiant extends Model
     {
         return $this->belongsTo(Etudiant_Parent::class, 'parentId', 'parentId');
     }
+
+    protected static function newFactory()
+    {
+        return EtudiantFactory::new();
+    }
+
 }
