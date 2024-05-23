@@ -15,7 +15,7 @@
             <ul>
                 <li><h3><a href="{{ route('filiere')}}">Test Emploi du temps</a></h3></li>
                 <li><h3><a href="{{ route('inscription')}}">Test Inscriptions</a></h3></li>
-
+                <li><h3><a href="{{ route('etudiants.index')}}">Etudiants</a></h3></li>
             </ul>
         </nav>
     </div>
