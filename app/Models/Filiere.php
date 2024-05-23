@@ -11,10 +11,11 @@ class Filiere extends Model
 
     protected $table = 'filieres'; // Nom de la table dans la base de données
 
-    public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
+    protected $primaryKey = 'codFil'; // Clé primaire de la table
+
+    public $incrementing = false; // Indique si la clé primaire est un nombre auto-incrémenté
 
     protected $fillable = ['codFil', 'libFil']; // Colonnes autorisées à être affectées en masse
-    public $timestamps = true;
 
     public function __construct(array $attributes = [])
     {
@@ -33,6 +34,6 @@ class Filiere extends Model
 
     public function emploieDuTemps()
     {
-        return $this->hasMany(Emploi_du_temps::class, 'codFil', 'codFil');
+        return $this->hasMany(EmploiDuTemps::class, 'codFil', 'codFil');
     }
 }

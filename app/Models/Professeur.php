@@ -14,7 +14,6 @@ class Professeur extends Model
     protected $primaryKey = 'numProf'; // Clé primaire de la table
 
     public $incrementing = true; // Indique si la clé primaire est un nombre auto-incrémenté
-    public $timestamps = true;
 
     protected $fillable = ['numProf', 'nomProf', 'user_id']; // Colonnes autorisées à être affectées en masse
 
@@ -23,11 +22,13 @@ class Professeur extends Model
         parent::__construct($attributes);
     }
 
-     // Relation avec le modèle User (un parent appartient à un utilisateur)
-     public function user()
-     {
-         return $this->belongsTo(User::class);
-     }
-
-   
+    // Relation avec le modèle User (un parent appartient à un utilisateur)
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function epreuves()
+    {
+        $this->hasMany(Epreuve::class, "numProf", "numProf");
+    }
 }

@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('filieres', function (Blueprint $table) {
-            $table->id();
-            $table->string('codFil')->unique();
+            $table->string('codFil')->primary();
             $table->string('libFil');
             $table->timestamps();
         });
