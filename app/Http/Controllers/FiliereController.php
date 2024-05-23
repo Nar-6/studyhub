@@ -64,6 +64,7 @@ class FiliereController extends Controller
     // Mettre à jour un emploi du temps
     public function update(Request $request, $emploiId)
     {
+
         // Valider les données du formulaire
         $request->validate([
             'lundi_matin' => 'nullable|string|max:255',

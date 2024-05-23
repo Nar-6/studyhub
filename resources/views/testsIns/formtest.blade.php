@@ -15,72 +15,69 @@
                     <div class="card-header">Create User</div>
     
                     <div class="card-body">
-                        <form method="POST" action="{{ route('users.store') }}">
-                            @csrf
-    
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-    
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-    
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Email Address</label>
-    
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-    
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-    
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-    
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-    
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-    
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-    
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Create User
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        @if ( $role == 'etudiant')
+                            @include('testsIns/form/etudiant')
+                        @elseif ($role == 'parent')
+                            @include('testsIns/form/parent')
+                        @elseif ($role == 'professeur')
+                            @include('testsIns/form/etudiant')
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @if ($role == 'parent')
+    <!-- Inclure jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Votre script JavaScript -->
+    <script>
+        // Données de recherche fictives (simulez les données de votre base de données)
+        const enfants = {!! json_encode($enfants) !!};
+        enfants.forEach(enfant => {
+            enfant.name = enfant.nom + ' ' + enfant.prenom;
+        });
+        // Fonction pour filtrer les suggestions en fonction de la recherche
+        function filtrerSuggestions(recherche) {
+            return enfants.filter(enfant => enfant.name.toLowerCase().includes(recherche.toLowerCase()));
+        }
+
+        // Fonction pour afficher les suggestions de recherche
+        function afficherSuggestions(suggestions) {
+            let suggestionsHTML ;
+            suggestions.forEach(suggestion => {
+                suggestionsHTML += `<option value="${suggestion.matricule}">${suggestion.nom} ${suggestion.prenom}</option>`;
+            });
+            $('#searchSuggestions').html(suggestionsHTML);
+        }
+
+        // Écouter l'événement de saisie dans l'input de recherche
+        $('#searchInput').on('input', function() {
+            const recherche = $(this).val().trim();
+            if (recherche !== '') {
+                const suggestions = filtrerSuggestions(recherche);
+                if (suggestions.length > 0) {
+                    afficherSuggestions(suggestions);
+                } else {
+                    $('#searchSuggestions').empty();
+                }
+            } else {
+                $('#searchSuggestions').empty();
+            }
+        });
+
+
+        // Écouter l'événement de clic sur une suggestion de recherche
+        $('#searchSuggestions').on('click', 'div', function() {
+            const suggestion = $(this).text();
+            $('#searchInput').val(suggestion);
+            $('#searchSuggestions').empty();
+            // Faire quelque chose avec la suggestion sélectionnée, comme effectuer une recherche
+        });
+    </script>
+    @endif
+
 </body>
+
 </html>
 
